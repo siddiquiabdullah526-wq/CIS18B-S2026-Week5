@@ -12,20 +12,29 @@ public class SetComparisonDemo {
     public static void main(String[] args) {
         List<String> tags = List.of("queue", "stack", "map", "set", "stack", "Queue");
 
+        // HashSet (order not guaranteed)
         Set<String> hashSet = new HashSet<>(tags);
+
+        // LinkedHashSet (preserves insertion order)
         Set<String> linkedHashSet = new LinkedHashSet<>(tags);
+
+        // TreeSet (natural sorted order)
         Set<String> treeSet = new TreeSet<>(tags);
 
         System.out.println("HashSet: " + hashSet);
         System.out.println("LinkedHashSet: " + linkedHashSet);
         System.out.println("TreeSet: " + treeSet);
 
+        // Case-insensitive TreeSet
         Set<String> caseInsensitive = new TreeSet<>(String.CASE_INSENSITIVE_ORDER);
         caseInsensitive.addAll(tags);
         System.out.println("TreeSet (case-insensitive): " + caseInsensitive);
 
-        // TODO: Replace with your own comparator (e.g., by length then alphabetically).
-        Set<String> customOrder = new TreeSet<>(Comparator.comparingInt(String::length).thenComparing(String::compareTo));
+        // Custom comparator: length, then alphabetical
+        Set<String> customOrder = new TreeSet<>(
+            Comparator.comparingInt(String::length)
+                      .thenComparing(String::compareTo)
+        );
         customOrder.addAll(tags);
         System.out.println("TreeSet (custom comparator): " + customOrder);
     }
