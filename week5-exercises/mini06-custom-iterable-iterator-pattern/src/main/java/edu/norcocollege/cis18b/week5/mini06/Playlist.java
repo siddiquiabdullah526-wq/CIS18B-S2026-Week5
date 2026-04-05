@@ -15,16 +15,21 @@ public class Playlist implements Iterable<PlaylistItem> {
 
     @Override
     public Iterator<PlaylistItem> iterator() {
-        // Default traversal: insertion order.
         return List.copyOf(items).iterator();
     }
 
     public Iterator<PlaylistItem> priorityIterator() {
-        // Alternate traversal: highest priority first.
         List<PlaylistItem> sorted = new ArrayList<>(items);
         sorted.sort(Comparator.comparingInt(PlaylistItem::getPriority).reversed());
         return sorted.iterator();
     }
 
-    // TODO: Add a third traversal strategy for the extension challenge.
+    public Iterator<PlaylistItem> reverseIterator() {
+        List<PlaylistItem> reversed = new ArrayList<>(items);
+        reversed.sort((a, b) -> Integer.compare(
+            items.indexOf(b),
+            items.indexOf(a)
+        ));
+        return reversed.iterator();
+    }
 }

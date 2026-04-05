@@ -14,8 +14,8 @@ public class PlaylistDemo {
 
         System.out.println("Default order: " + titles(playlist.iterator()));
         System.out.println("Priority order: " + titles(playlist.priorityIterator()));
-
-        // TODO: Add a brief reflection in your submission about when built-in iteration would be enough.
+        System.out.println("Reverse order: " + titles(playlist.reverseIterator()));
+        System.out.println("Reflection: Built-in iteration would be enough when only one simple traversal order is needed, but a custom iterable adds value when the same data needs multiple deterministic traversal strategies.");
     }
 
     static List<String> titles(Iterator<PlaylistItem> iterator) {
