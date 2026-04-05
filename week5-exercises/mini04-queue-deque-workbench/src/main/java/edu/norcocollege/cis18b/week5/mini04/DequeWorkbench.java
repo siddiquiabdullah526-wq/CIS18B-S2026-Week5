@@ -8,6 +8,7 @@ public class DequeWorkbench {
     public static void main(String[] args) {
         runFifoDemo();
         runLifoDemo();
+        System.out.println("Why not Stack: ArrayDeque is preferred because Deque is more modern and flexible than the legacy Stack class.");
     }
 
     private static void runFifoDemo() {
@@ -27,11 +28,10 @@ public class DequeWorkbench {
 
         undoStack.push("rename file");
         undoStack.push("insert checkpoint");
+        undoStack.push("save draft");
 
         while (!undoStack.isEmpty()) {
             System.out.println("Undo popped: " + undoStack.pop());
         }
-
-        // TODO: Add one more stack action and show the updated LIFO behavior.
     }
 }
