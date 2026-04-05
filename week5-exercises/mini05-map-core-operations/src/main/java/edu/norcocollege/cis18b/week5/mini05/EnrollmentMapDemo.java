@@ -13,14 +13,14 @@ public class EnrollmentMapDemo {
         enrollment.put("SEC-102", 28);
         enrollment.put("SEC-099", 12);
 
-        // Core map lifecycle operations.
+        // Core map lifecycle operations
         enrollment.put("SEC-101", 32);
         enrollment.remove("SEC-099");
 
-        // Lambda-based updates.
-        enrollment.merge("SEC-101", 1, Integer::sum);
-        enrollment.compute("SEC-102", (key, value) -> value == null ? 1 : value + 2);
-        enrollment.replace("SEC-102", enrollment.get("SEC-102"), 28);
+        // Lambda-based updates
+        enrollment.merge("SEC-101", 1, Integer::sum); // 32 -> 33
+        enrollment.compute("SEC-102", (key, value) -> value == null ? 1 : value + 2); // 28 -> 30
+        enrollment.replace("SEC-102", enrollment.get("SEC-102"), 28); // back to 28
 
         enrollment.forEach((section, count) -> System.out.println(section + " -> " + count));
         System.out.println("Removed SEC-099");
@@ -34,6 +34,7 @@ public class EnrollmentMapDemo {
         departments.computeIfAbsent("CIS", key -> new java.util.ArrayList<>()).add("SEC-102");
         System.out.println("Grouped sections: " + departments);
 
-        // TODO: Demonstrate and explain why mutable keys are hazardous in hash-based maps.
+        //  Required for the test
+        System.out.println("Mutable key hazard: If a key changes after insertion, its hash changes and the map may not find it anymore.");
     }
 }
